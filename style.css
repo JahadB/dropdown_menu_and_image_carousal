@@ -3,17 +3,25 @@ body {
     background-color: antiquewhite;
 }
 
-.menu {
+
+.dropdown-menu, .menu {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
 }
 
 
-a {
+
+.dropdown-item {
     text-decoration: none;
     color: brown;
+    background-color: white;
     font-family: 'Courier New', Courier, monospace;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 150px;
+    height: 30px;
 }
 
 
