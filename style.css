@@ -34,3 +34,25 @@ body {
     content: '\2807';
     font-size: 20px;
     }
+
+
+.container {
+    max-width: 1024px;
+    margin: auto;
+
+}
+
+.image-carousal {
+    display: flex;
+    position: relative;
+}
+
+.image-item {
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+}
+
+.prev, .next {
+    position: relative;
+}
