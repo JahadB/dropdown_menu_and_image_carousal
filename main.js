@@ -23,41 +23,59 @@ const slides = document.querySelectorAll(".image-item");
 const prev = document.querySelector(".prev");
 const next = document.querySelector(".next");
 
-let slideIndex = 1;
+let slideIndex = 0;
+
+let intervalId = 0;
+
+document.addEventListener("DOMContentLoaded", () => {
+    slides[slideIndex].removeAttribute("hidden");
+})
 
 function nextSlide(){
-    if(slideIndex == 3) {
-        slides[slideIndex - 3].removeAttribute("hidden");
-        slides[slideIndex - 1].setAttribute("hidden", "true");
-        slideIndex = slideIndex - 2;
+    if(slideIndex == slides.length - 1) {
+        slides[0].removeAttribute("hidden");
+        slides[slideIndex].setAttribute("hidden", "true");
+        slideIndex = 0;
     }
-    else if(slides[slideIndex].getAttribute("hidden") != null){
-        slides[slideIndex].removeAttribute("hidden");
+    else if(slides[slideIndex + 1].getAttribute("hidden") != null){
+        slides[slideIndex + 1].removeAttribute("hidden");
+        slides[slideIndex].setAttribute("hidden", "true");
         slideIndex++;
-        slides[slideIndex - 2].setAttribute("hidden", "true");
+    }
+
+    console.log(slideIndex);
+}
+
+
+next.addEventListener("click", () => {
+    clearInterval(intervalId);
+    nextSlide();
+    intervalId = setInterval(nextSlide, 5000);
+});
+
+
+function prevSlide() {
+    if(slideIndex == 0) {
+        slides[slides.length - 1].removeAttribute("hidden");
+        slides[0].setAttribute("hidden", "true");
+        slideIndex = slides.length - 1;
+    }
+    else {
+        slides[slideIndex - 1].removeAttribute("hidden");
+        slides[slideIndex].setAttribute("hidden", "true");
+        slideIndex--;
     }
 
     console.log(slideIndex);
 
 }
 
+prev.addEventListener("click", () => {
+    clearInterval(intervalId);
+    prevSlide();
+    intervalId = setInterval(nextSlide, 5000);
+});
 
-next.addEventListener("click", nextSlide);
 
+intervalId = setInterval(nextSlide, 5000);
 
-function prevSlide() {
-    if(slideIndex == 1) {
-        slides[slideIndex + 1].removeAttribute("hidden");
-        slides[slideIndex - 1].setAttribute("hidden", "true");
-        console.log(slideIndex);
-        slideIndex = slideIndex + 2;
-    }
-    else {
-        slides[slideIndex - 2].removeAttribute("hidden");
-        slides[slideIndex - 1].setAttribute("hidden", "true");
-        slideIndex--;
-    }
-
-}
-
-prev.addEventListener("click", prevSlide);

@@ -39,12 +39,13 @@ body {
 .container {
     max-width: 1024px;
     margin: auto;
+    position: relative;
+
 
 }
 
 .image-carousal {
     display: flex;
-    position: relative;
 }
 
 .image-item {
@@ -54,5 +55,18 @@ body {
 }
 
 .prev, .next {
-    position: relative;
+    position: absolute;
+    font-size: xx-large;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    color: beige;
+    cursor: pointer;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
 }
